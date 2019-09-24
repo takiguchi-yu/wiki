@@ -41,9 +41,11 @@ https://developer.apple.com/jp/programs/
 1. 内容を確認し、「Register」をクリック  
 
 ### 「マイ App」を登録 
-1. 以下にアクセス
+※ Chrome だと何かと相性が悪かったりするので、Safari がおすすめ  
+1. 以下にアクセス  
 https://appstoreconnect.apple.com/
 1. 「マイ App」をクリック
 1. 左上の「＋」をクリックしたら手順に従い、自分が作成した iOS アプリを登録する
-
-
+### マメ情報
+* プライバシポリシージェネレーター  
+https://app-privacy-policy-generator.firebaseapp.com/
