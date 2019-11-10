@@ -115,7 +115,10 @@ Amazon ECR イメージの試用を終了したら、レポジトリを削除し
 ```bash
 aws ecr delete-repository --repository-name java-build-repository --region ap-northeast-1 --force
 ```
-
+# Amazon ECR リポジトリを使って CodeBuild からアクセスできるように権限を設定
+AWSコンソールで ECR を開き、リポジトリ選択後に左のナビゲーションバーの Permissions から権限を追加する。  
+詳しくは以下を参照  
+https://docs.aws.amazon.com/ja_jp/codebuild/latest/userguide/sample-ecr.html
 ```bash
 
 ```
