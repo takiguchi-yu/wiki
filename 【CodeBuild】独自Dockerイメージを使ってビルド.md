@@ -119,18 +119,3 @@ aws ecr delete-repository --repository-name java-build-repository --region ap-no
 AWSコンソールで ECR を開き、リポジトリ選択後に左のナビゲーションバーの Permissions から権限を追加する。  
 詳しくは以下を参照  
 https://docs.aws.amazon.com/ja_jp/codebuild/latest/userguide/sample-ecr.html
-```bash
-
-```
-
-```bash
-
-```
-
-```bash
-
-```
-
-```bash
-
-```
