@@ -88,7 +88,7 @@ aws ecr create-repository --repository-name java-build-repository --region ap-no
         "registryId": "{aws_account_id}", 
         "repositoryName": "java-build-repository", 
         "repositoryArn": "arn:aws:ecr:ap-northeast-1:{aws_account_id}:repository/java-build-repository", 
-        "createdAt": 1573310049.0, 
+        "createdAt": 1573310049.0, git merge --allow-unrelated-histories origin/master
         "repositoryUri": "{aws_account_id}.dkr.ecr.ap-northeast-1.amazonaws.com/java-build-repository"
     }
 }
