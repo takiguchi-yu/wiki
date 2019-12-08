@@ -68,6 +68,77 @@ react の component は内部で状態を持つことができる
 component の内部でのみ持つことができる  
 props はイミュータブル（変更不可）であったが、state はミュータブル（変更可能）である  
 
+## redux
+Reduxは、ReactJSが扱うUIのstate(状態)を管理をするためのフレームワークです。Reactではstateの管理するデータフローにFluxを提案していますが、ReduxはFluxの概念を拡張してより扱いやすく設計されています。  
+Reduxはstateを管理するためのライブラリーなので、React以外にもAngularJSやjQueryなどと併せて使用することもできますが、Reactと使用するのが一番相性がいいです。
+
+<img width="619" alt="スクリーンショット 2019-12-08 15 59 13" src="https://user-images.githubusercontent.com/8340629/70385779-c0b36e80-19d3-11ea-81aa-b5dec94d6494.png">
+
+
+### redux の action
+アプリケーションの中で何が起きたかを表すデータのこと  
+Javascript のオブジェクトのこと  
+オブジェクトの内部で type というキーとtype に対応する値を持つのが特徴  
+type の値はユニークなものでないといけない  
+action　が定義されたコードを action creator という  
+例）
+```javascript
+const READ_EVENT = 'READ_EVENT'
+export const readEvnet = () => ({
+  type: READ_EVNET  // ※ type というキーとそれに対応する値
+})
+```
+
+### redux の reducer
+state(状態)をどのように変化させるかを定義するのがreducer  
+例）
+```javascript
+// 全reducer をひとつに結合させるためにcombineReducersを定義
+import {combineReducers} from 'redux'
+
+// sample reducers
+import foo from './foo'
+import bar from './bar'
+export default combineReducers({foo, bar})
+```
+```javascript
+import {READ_EVENT} from '../actions'
+
+const initialState = {value: 0}
+
+export default (state = initialState, action) => {
+  switch (action.type) {
+    case READ_EVENT:
+      return {state.value + 1}
+    default:
+      return state
+  }
+}
+```
+
+### redux の store
+reducer をもとに storeを作成する  
+store はstate(状態)を保持し、全てのアプリケーションで使用できるようにする役割を持つ  
+provider を使用することでstateの受け渡しを簡単にしている  
+例）
+```javascript
+// storeをインポート
+import {createStore} from 'redux'
+// Provicerをインポート
+import {Provider} from 'react-redux'
+// reducerをインポート
+import reducer from './reducers'
+// アプリケーションをインポート
+import App from './components/App'
+const = store = createStore(reducer)
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>
+  document.getElementById('root')
+)
+```
+
 ## Yarn のインストール
 パッケージ管理ツールである yarn をインストールする。
 ```bash
