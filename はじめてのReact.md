@@ -1,7 +1,8 @@
 ## React とは
 Facebook が開発した Javascript で画面開発できるライブラリ  
 Slack, Qiita, NETFLIX, Airbnb など多くのWebサービスで採用されている言語  
-仮想DOM といって DOM の変更箇所のみをレンダリングする機構を持っているため高速な処理が可能
+仮想DOM といって DOM の変更箇所のみをレンダリングする機構を持っているため高速な処理が可能  
+公式：https://ja.reactjs.org/
 
 ## JSX 
 JSX は HTML ライクに記述した文法を Javascript に変換することができる仕組みで、これをトランスファイルという  
@@ -146,17 +147,10 @@ npm install --global yarn
 yarn --version
 ```
 
-## create-react-app のインストール
-今までは babel や webpack をひとつずつインストールしていたが、
-この問題を解消するために facebook が便利なテンプレートを開発した
-```bash
-yarn global add create-react-app
-```
-
 ## react アプリケーションの作成
 ```bash
 # 現在のディレクトリに作成
-create-react-app ./<アプリ名>
+npx create-react-app ../<現在のディレクトリ名>
 ```
 
 ## react アプリケーションを起動
