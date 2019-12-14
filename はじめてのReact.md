@@ -148,6 +148,7 @@ yarn --version
 ```
 
 ## react アプリケーションの作成
+https://create-react-app.dev/docs/getting-started
 ```bash
 # 現在のディレクトリに作成
 npx create-react-app ../<現在のディレクトリ名>
