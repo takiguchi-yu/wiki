@@ -61,4 +61,8 @@ git config --local core.quotepath false
 git config --global core.quotepath false
 ```
 
-
+## 既存のgitリポジトリにローカルをpushする
+```bash
+git remote add origin <git url>
+git push -u origin master
+```
