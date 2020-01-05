@@ -45,3 +45,83 @@ http://redux.js.org
 # redux インストール
 yarn add redux@4.0.5
 ```
+
+### React Hooks
+ドキュメント：https://ja.reactjs.org/docs/hooks-reference.html
+```javascript
+import React, { useState, useEffect, useContext, useReducer } from 'react';
+```
+#### useState
+状態変化を司る。  
+第一引数でstateの値、第二引数でstateを更新するためのset関数が返却される。
+```javascript
+(例)
+const [title, setTitle] = useState('')
+```
+#### useEffect
+状態変化する度に呼ばれる。  
+いままでの componentDidMount や componentDidUpdate みたいなやつ。  
+第一引数でstateの値、第二引数でstateを更新するためのset関数が返却される。
+```javascript
+(例)
+// 例では、state の変化を監視
+useEffect(() => {
+  console.log('I am useEffect.')
+}, [state])
+```
+### useReducer
+Reducer を使うための関数。  
+```javascript
+import reducer from '../reducers'
+const App = () => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  return (
+    <AppContext.Provider value={{ state, dispatch }}>
+      <div className="container-fluid">
+        <EventForm />
+      </div>
+    </AppContext.Provider>
+  )
+};
+export default App;
+
+```
+
+#### useContext
+prop drilling 問題のための関数。  
+別コンポーネントに値の引き継ぎの行う。
+```javascript
+(例)
+// AppContext.js
+import { createContext } from 'react';
+const AppContext = createContext();
+export default AppContext;
+
+// App.js
+import AppContext from '../contexts/AppContext'
+import reducer from '../reducers'
+import EventForm from './EventForm'
+const App = () => {
+  const initialState = appState ? JSON.parse(appState) : {
+    events: [],
+    operationLogs: [],
+  }
+  const [state, dispatch] = useReducer(reducer, initialState);
+  return (
+    <AppContext.Provider value={{ state, dispatch }}>
+      <div><EventForm /></div>
+    </AppContext.Provider>
+  )
+};
+export default App;
+
+// EventForm.js
+import React, { useContext, useState } from 'react'
+const EventForm = () => {
+  const { state, dispatch } = useContext(AppContext)
+  return (
+    <button className="btn btn-danger" onClick={deleteAllEvents} disabled={state.events.length === 0}>イベントボタン</button>
+  )
+}
+export default EventForm
+```

@@ -17,6 +17,7 @@ git commit -m"<ワンラインコメント>"
 
 # コミットログを確認
 git log
+git reflog
 
 # 複数あるコミットログをまとめる
 git rebase -i HEAD~<遡ってまとめるログを数で指定>
@@ -66,3 +67,5 @@ git config --global core.quotepath false
 git remote add origin <git url>
 git push -u origin master
 ```
+## git reflog 詳細
+https://gist.github.com/kymmt90/9c997726b638b316f9be07aa4e3eea5e
