@@ -19,6 +19,10 @@ git commit -m"<ワンラインコメント>"
 git log
 git reflog
 
+# git log をキレイに見るためのあれこれ
+git log --graph --oneline --decorate --all
+git log --pretty=format:"%h %ad %s" --date=short --all
+
 # 複数あるコミットログをまとめる
 git rebase -i HEAD~<遡ってまとめるログを数で指定>
 # 例）過去3つ分のコミットログをまとめる
@@ -30,6 +34,12 @@ git rebase -i HEAD~<遡ってまとめるログを数で指定>
 # リモートブランチを更新
 git push -u origin HEAD
 ```
+
+## 現在のブランチを確認
+```bash
+git branch -a
+```
+
 ## ローカルリポジトリをリモートリポジトリに push できないとき
 以下のようなエラーが発生したときの対処法
 ```
@@ -69,3 +79,28 @@ git push -u origin master
 ```
 ## git reflog 詳細
 https://gist.github.com/kymmt90/9c997726b638b316f9be07aa4e3eea5e
+
+## ローカルの変更を破棄する
+```bash
+# ファイル名指定
+git checkout <filename>
+
+# 特定のファイルではなく、全てをもとに戻す
+git checkout .
+```
+
+## リモートブランチをローカルにチェックアウト
+```bash
+# 現在のブランチを確認
+$ git branch -a
+  develop
+* feature/hoge
+  master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/develop
+  remotes/origin/master
+
+# 名前を付けてブランチをチェックアウト
+$ git checkout -b feature/fuga origin/develop
+```
+

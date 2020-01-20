@@ -1,22 +1,24 @@
-# React で SSR を AWS Lambda で実行
-`SSR`であればサーバ不要で動的な画面が構築できるじゃん、ということで早速構築。  
-さらに`AWS Lambda`のようにサーバレスであれば、`AWS EC2`のように起動時間でお金がかかるわけでもないので、  
-スタートアップでアクセスが少ないサービスであれば、とっても節約になる。
+# `React`開発のSPAテンプレート
+`React`を使って`SPA`開発するためのテンプレート。
 
 ## 技術要素やサービス
 * [React](https://ja.wikipedia.org/wiki/React)  
 * SSR(サーバーサイドレンダリング)  
-本来JavaScriptで行う画面の書き換え処理などをサーバー側で実行させて、ユーザーの待機時間を短くすること。
-* Amazon API Gateway
+本来JavaScriptで行う画面の書き換え処理などをサーバー側で実行させて、ユーザーの待機時間を短くすること。  
+→これ、やりたかったけど今回は見送り
+* S3  
+静的ホスティングとして利用。ビルドした`React`を配置する。
+* Amazon API Gateway  
+`React`から実行。
 * AWS Lambda
 * [Serverless framework](https://serverless.com/)  
 ローカル開発環境として使用。
 * [Swagger](https://swagger.io/)  
-APIのドキュメントでAPI Gatewayにインポートして使用。
+APIのドキュメントで`API Gateway`にインポートして使用。
 * [AWS CLI](https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/cli-chap-welcome.html)
 
 ## アーキテクチャ
-<img width="650" src="https://user-images.githubusercontent.com/8340629/72343322-ed188400-3711-11ea-9a15-a0a60431a2be.png">
+<img width="780" alt="スクリーンショット 2020-01-20 23 10 55" src="https://user-images.githubusercontent.com/8340629/72732903-22bde100-3bda-11ea-9f87-06a442c14e6f.png">
 
 ## AWS CLI
 インストールは、[公式](https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/cli-chap-welcome.html)を参照のこと  
@@ -118,6 +120,7 @@ functions:
 # CloudFormation の記法で定義
 resources:
   Resources:
+    # S3
     S3ImageBucket:
       Type: AWS::S3::Bucket
       Properties:
@@ -137,3 +140,4 @@ resources:
       Export:
         Name: ${opt:stage, 'dev'}-ApiGatewayRestApiRootResourceId
 ```
+
