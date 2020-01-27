@@ -3,8 +3,8 @@
 
 ## 技術要素やサービス
 * [React](https://ja.wikipedia.org/wiki/React)  
-* SSR(サーバーサイドレンダリング)  
-本来JavaScriptで行う画面の書き換え処理などをサーバー側で実行させて、ユーザーの待機時間を短くすること。  
+* ~~SSR(サーバーサイドレンダリング)~~  
+~~本来JavaScriptで行う画面の書き換え処理などをサーバー側で実行させて、ユーザーの待機時間を短くすること。~~  
 →これ、やりたかったけど今回は見送り
 * S3  
 静的ホスティングとして利用。ビルドした`React`を配置する。
@@ -141,3 +141,25 @@ resources:
         Name: ${opt:stage, 'dev'}-ApiGatewayRestApiRootResourceId
 ```
 
+## github
+https://github.com/takiguchi-yu/spa-template-api
+
+# React
+```bash
+# create-react-app の最新バージョンを確認
+npm info create-react-app
+
+# create-react-app をインストール
+npm install -g create-react-app@3.3.0
+
+# アプリケーション作成
+create-react-app <アプリケーション名>
+
+# アプリケーションの起動を確認
+yarn start
+```
+
+
+
+## github
+https://github.com/takiguchi-yu/spa-template
