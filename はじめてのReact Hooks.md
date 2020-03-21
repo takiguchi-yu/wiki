@@ -156,14 +156,36 @@ npx eslint --init
 ```
 
 .eslintrc.js
-```
-     'react',
-   ],
-   rules: {
-+    // 拡張子が.jsの場合でも.jsxとして扱われるようにする
-+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-+    // ブラケットを省略しなくてもエラーにしない
-+    "arrow-body-style": ["error", "always"],
-   },
- };
+```javascript
+module.exports = {
+  env: {
+    browser: true,
+    es6: true,
+  },
+  extends: [
+    'plugin:react/recommended',
+    'airbnb',
+  ],
+  globals: {
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly',
+  },
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 2018,
+    sourceType: 'module',
+  },
+  plugins: [
+    'react',
+  ],
+  rules: {
+    // 拡張子が.jsの場合でも.jsxとして扱われるようにする
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    // ブラケットを省略しなくてもエラーにしない
+    "arrow-body-style": ["error", "always"],
+  },
+};
+
 ```
