@@ -125,3 +125,45 @@ const EventForm = () => {
 }
 export default EventForm
 ```
+
+## eslintを使う
+package.json にスクリプトを登録する
+```git
+   "scripts": {
++    "lint": "eslint src/ --ext .js",
+     "start": "react-scripts start",
+```
+これで以下のコマンドで実行可能になる
+```bash
+npm run lint 
+
+# 自動修正する場合
+npm run lint -- --fix
+```
+ルールを初期化する
+```bash
+npx eslint --init
+
+# 以下は選択肢
+? How would you like to use ESLint? To check syntax, find problems, and enforce code style
+? What type of modules does your project use? JavaScript modules (import/export)
+? Which framework does your project use? React
+? Does your project use TypeScript? No
+? Where does your code run? Browser
+? How would you like to define a style for your project? Use a popular style guide
+? Which style guide do you want to follow? Airbnb: https://github.com/airbnb/javascript
+? What format do you want your config file to be in? JavaScript
+```
+
+.eslintrc.js
+```
+     'react',
+   ],
+   rules: {
++    // 拡張子が.jsの場合でも.jsxとして扱われるようにする
++    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
++    // ブラケットを省略しなくてもエラーにしない
++    "arrow-body-style": ["error", "always"],
+   },
+ };
+```
