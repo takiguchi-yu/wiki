@@ -1,49 +1,55 @@
 ## React とは
+
 Facebook が開発した Javascript で画面開発できるライブラリ  
-Slack, Qiita, NETFLIX, Airbnb など多くのWebサービスで採用されている言語  
-仮想DOM といって DOM の変更箇所のみをレンダリングする機構を持っているため高速な処理が可能  
+Slack, Qiita, NETFLIX, Airbnb など多くの Web サービスで採用されている言語  
+仮想 DOM といって DOM の変更箇所のみをレンダリングする機構を持っているため高速な処理が可能  
 公式：https://ja.reactjs.org/
 
-## JSX 
+## JSX
+
 JSX は HTML ライクに記述した文法を Javascript に変換することができる仕組みで、これをトランスファイルという  
-直感的にHTMLを表現できる、記述できるのがJSXの利点  
-トランスファイルは babel がやっている  
+直感的に HTML を表現できる、記述できるのが JSX の利点  
+トランスファイルは babel がやっている
 
 変換の様子は、以下のサイトが確認ができる  
 https://babeljs.io/repl  
 例)
-* Javascript記法
+
+- Javascript 記法
+
 ```javascript
 class App extends Component {
   render() {
-    React.createElement(
-      "div",
-      null,
-      "Hello, World"
-    );
+    React.createElement('div', null, 'Hello, World');
   }
 }
 ```
-* JSX記法
+
+- JSX 記法
+
 ```javascript
 class App extends Component {
   render() {
-    return <div>Hello, World</div>
+    return <div>Hello, World</div>;
   }
 }
 ```
+
 JSX の方が最終的な成果物（HTML）に近く、分かりやすい
 
 ## Webpack
+
 モジュールバンドラーとも呼ばれる  
 複数ファイルを bundle.js としてひとつのファイルにまとめくれる  
-HTML でいちいち複数のscriptタグで読み込まなくて済む  
+HTML でいちいち複数の script タグで読み込まなくて済む  
 公式: https://webpack.js.org/
 
 ## props
+
 データの属性のこと  
-例えば、props.nameやprops.ageなど props には数値や関数や文字列などなんでも入る  
-波括弧で囲って定義してあげる  
+例えば、props.name や props.age など props には数値や関数や文字列などなんでも入る  
+波括弧で囲って定義してあげる
+
 ```javascript
 import Readct from 'react'
 
@@ -61,47 +67,54 @@ export default App
 ```
 
 ## prop-types
-型チェックするためのパッケージ  
+
+型チェックするためのパッケージ
 
 ## state
+
 react の component は内部で状態を持つことができる  
 これを state という  
 component の内部でのみ持つことができる  
-props はイミュータブル（変更不可）であったが、state はミュータブル（変更可能）である  
+props はイミュータブル（変更不可）であったが、state はミュータブル（変更可能）である
 
 ## redux
-Reduxは、ReactJSが扱うUIのstate(状態)を管理をするためのフレームワークです。Reactではstateの管理するデータフローにFluxを提案していますが、ReduxはFluxの概念を拡張してより扱いやすく設計されています。  
-Reduxはstateを管理するためのライブラリーなので、React以外にもAngularJSやjQueryなどと併せて使用することもできますが、Reactと使用するのが一番相性がいいです。
+
+Redux は、ReactJS が扱う UI の state(状態)を管理をするためのフレームワークです。React では state の管理するデータフローに Flux を提案していますが、Redux は Flux の概念を拡張してより扱いやすく設計されています。  
+Redux は state を管理するためのライブラリーなので、React 以外にも AngularJS や jQuery などと併せて使用することもできますが、React と使用するのが一番相性がいいです。
 
 <img width="619" alt="スクリーンショット 2019-12-08 15 59 13" src="https://user-images.githubusercontent.com/8340629/70385779-c0b36e80-19d3-11ea-81aa-b5dec94d6494.png">
 
-
 ### redux の action
+
 アプリケーションの中で何が起きたかを表すデータのこと  
 Javascript のオブジェクトのこと  
-オブジェクトの内部で type というキーとtype に対応する値を持つのが特徴  
+オブジェクトの内部で type というキーと type に対応する値を持つのが特徴  
 type の値はユニークなものでないといけない  
-action　が定義されたコードを action creator という  
+action 　が定義されたコードを action creator という  
 例）
+
 ```javascript
-const READ_EVENT = 'READ_EVENT'
+const READ_EVENT = 'READ_EVENT';
 export const readEvnet = () => ({
-  type: READ_EVNET  // ※ type というキーとそれに対応する値
-})
+  type: READ_EVNET, // ※ type というキーとそれに対応する値
+});
 ```
 
 ### redux の reducer
-state(状態)をどのように変化させるかを定義するのがreducer  
+
+state(状態)をどのように変化させるかを定義するのが reducer  
 例）
+
 ```javascript
 // 全reducer をひとつに結合させるためにcombineReducersを定義
-import {combineReducers} from 'redux'
+import { combineReducers } from 'redux';
 
 // sample reducers
-import foo from './foo'
-import bar from './bar'
-export default combineReducers({foo, bar})
+import foo from './foo';
+import bar from './bar';
+export default combineReducers({ foo, bar });
 ```
+
 ```javascript
 import {READ_EVENT} from '../actions'
 
@@ -118,10 +131,12 @@ export default (state = initialState, action) => {
 ```
 
 ### redux の store
-reducer をもとに storeを作成する  
-store はstate(状態)を保持し、全てのアプリケーションで使用できるようにする役割を持つ  
-provider を使用することでstateの受け渡しを簡単にしている  
+
+reducer をもとに store を作成する  
+store は state(状態)を保持し、全てのアプリケーションで使用できるようにする役割を持つ  
+provider を使用することで state の受け渡しを簡単にしている  
 例）
+
 ```javascript
 // storeをインポート
 import {createStore} from 'redux'
@@ -141,32 +156,39 @@ ReactDOM.render(
 ```
 
 ## Yarn のインストール
+
 パッケージ管理ツールである yarn をインストールする。
+
 ```bash
 npm install --global yarn
 yarn --version
 ```
 
 ## react アプリケーションの作成
+
 https://create-react-app.dev/docs/getting-started
+
 ```bash
 # 現在のディレクトリに作成
 npx create-react-app ../<現在のディレクトリ名>
 ```
 
 ## react アプリケーションを起動
+
 ```bash
 yarn run start
-or 
+or
 yarn start
 ```
 
 ## redux をインストール
+
 ```bash
-yarn add redux react-redux 
+yarn add redux react-redux
 ```
 
 ## 便利なライブラリをインストール
+
 ```bash
 # HTTP リクエストするためのライブラリ
 yarn add axios
@@ -184,5 +206,11 @@ yarn add redux-form
 yarn add redux-devtools-extension
 
 # material-ui をインストール
-yarn add material-ui
+# https://material-ui.com/getting-started/installation/
+yarn add @material-ui/core
 ```
+
+## 参考
+
+`3schools.com`  
+https://www.w3schools.com/react/default.asp

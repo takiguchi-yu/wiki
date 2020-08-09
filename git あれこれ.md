@@ -1,3 +1,13 @@
+## よく使うコマンドのエイリアス設定
+```bash
+git config --global alias.st status
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.cm commit
+git config --global alias.df diff
+git config --global alias.gr grep
+```
+
 ## 開発の流れ
 ```bash
 # ローカルブランチを作成
@@ -103,4 +113,3 @@ $ git branch -a
 # 名前を付けてブランチをチェックアウト
 $ git checkout -b feature/fuga origin/develop
 ```
-
