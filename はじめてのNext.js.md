@@ -83,7 +83,7 @@ Learn <a href="https://nextjs.org">Next.js!</a>
 Read <Link href="/posts/first-post"><a>this page!</a></Link>
 ```
 - 次に `pages/posts/first-post.js` を以下の通り書き換える
-```js 
+```js
 import Link from 'next/link'
 
 export default function FirstPost() {
@@ -129,3 +129,8 @@ Next.js は自動的にコード分割を行うので、各ページはそのペ
 https://nextjs.org/docs/api-reference/next/link
 
 ## 続く...
+
+# SSR フレームワーク `Next.js` を使って `React` を快適ルーティング part3
+前回の続きです。  
+今回は、CSSや静的ファイル（画像など）を追加していきたいと思います。
+

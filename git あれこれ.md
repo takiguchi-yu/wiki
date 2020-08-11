@@ -113,3 +113,13 @@ $ git branch -a
 # 名前を付けてブランチをチェックアウト
 $ git checkout -b feature/fuga origin/develop
 ```
+
+## リモートリポジトリを追加
+```bash
+git remote add origin git@github.com:ユーザー名/リポジトリ名.git
+```
+
+## リモートリポジトリの変更
+```bash
+git remote set-url origin git@github.com:ユーザー名/リポジトリ名.git
+```
