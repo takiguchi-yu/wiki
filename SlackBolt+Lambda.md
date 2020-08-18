@@ -104,3 +104,9 @@ Callback ID は handler.js の app.shortcut('{`callback_id`}'〜 と一致させ
 Lambda で Bolt を動かす場合、Lambda起動+Bolt起動の時間が乗ってくるため、結構シビア。普通にサーバでBoltを動かした方が何かと考えることが少なくて済むと思った。
 
 記事の後半から雑になってきたので、不明点はコメントか、Github で！
+
+## 参考
+
+https://github.com/seratch/bolt-starter
+
+https://github.com/seratch/serverless-slack-bolt-aws
