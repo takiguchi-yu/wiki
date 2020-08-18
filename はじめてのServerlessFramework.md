@@ -12,7 +12,7 @@ Export a path to nodebrew:
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 ========================================
  
-# 上記で setup したときに表示されたコマンドを .bash_profile に追記
+# 上記で表示されたコマンドを実行
 $ echo "export PATH=\$HOME/.nodebrew/current/bin:\$PATH" >> ~/.bash_profile
 $ source ~/.bash_profile
  
