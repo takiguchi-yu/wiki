@@ -1,47 +1,54 @@
-# Slack Bolt を AWS Lambda で動かすポイント
+# Slack アプリを AWS Lambda で動かす
 
 ## やること
 
 Slack アプリを `AWS Lambda` で動かす。  
-Slack アプリは `Slack Bolt` で開発する。
+Slack アプリは `Slack Bolt` で開発し、Slackのショートカットからモーダルを起動する。  
 
-## Slack Bolt って？
+## [Slack Bolt](https://slack.dev/bolt-js/ja-jp/tutorial/getting-started) とは？
 
-Slack アプリを手軽に作成するためのフレームワークである。Slack 社が提供している。  
-Bot だけを作れるとかそういうわけではなく、色々なトリガーからアプリを起動させて色々な処理をさせることができる。
+Slack アプリを手軽に作成するためのフレームワークで、Slack 社が提供している。Bot だけを作れるとかそういうわけではなく、色々なトリガーからアプリを起動させて色々な処理をさせることができる。トリガーは以下の通り。
 
 - Webhook 起動
 - ショートカット起動（イナズママークのやつ）
 - スラッシュコマンド起動
 
-[Bolt 入門ガイド](https://slack.dev/bolt-js/ja-jp/tutorial/getting-started)
+また、[BlockKitBuilder](https://app.slack.com/block-kit-builder/) を使えば、よりリッチな UI を実現することができる。
 
-## 今回の構成イメージ
+## シーケンス
 
-![](./images/slackbolt-overview2.png)
+![](./images/slackbolt-sequence.png)
 
-## 必要なパケッケージ
+## 開発言語
+- Node.js 12.16.1
 
-- @slack/bolt
-- @slack/logger
-- aws-serverless-express
+## 依存関係のある npm パッケージ
+
+- @slack/bolt 2.2.3
+- @slack/logger 2.0.0
+- aws-serverless-express 3.3.8
+
+## 開発環境のみの npm パッケージ
+
+- serverless 1.78.1
+- serverless-offline 6.5.0
 
 ## 実装内容
 
-- handler.js
-
 ```js
 // ------------------------
-// Bolt App Initialization
+// Bolt 初期化処理
 // ------------------------
 const { App, ExpressReceiver } = require('@slack/bolt');
 const { LogLevel } = require('@slack/logger');
 const logLevel = process.env.SLACK_LOG_LEVEL || LogLevel.DEBUG;
 const processBeforeResponse = false;
+
 const receiver = new ExpressReceiver({
   signingSecret: process.env.SLACK_SIGNING_SECRET,
   processBeforeResponse,
 });
+
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
   logLevel,
@@ -50,32 +57,24 @@ const app = new App({
 });
 
 // ------------------------
-// Application Logic
+// Bolt メイン処理
 // ------------------------
 
-// Shortcut Trigger
+// ショートカット起動
 app.shortcut('{callback_id}', async ({ logger, client, body, ack }) => {
-  try {
-    const res = await client.views.open({
-        "trigger_id": body.trigger_id,
-        "view": // Paste the layout here. See https://app.slack.com/block-kit-builder/
-    });
-    logger.debug("views.open response:\n\n" + JSON.stringify(res, null, 2) + "\n");
-    await ack();
-  } catch (e) {
-    logger.error("views.open error:\n\n" + e + "\n");
-    await ack(`:x: Failed to open a modal due to *${e.code}* ...`);
-  }
+  // logic...
+  await ack();
 });
 
-// Response
+// レスポンス処理
 app.view('{callback_id}', async ({ logger, client, body, ack }) => {
-  await say('Hi ' + body.user.name);
+  // logic...
   await ack();
 });
 
 // ------------------------
-// AWS Lambda handler
+// AWS Lambda ハンドラ
+// リクエストを受け付けたらExpressサーバを起動する
 // ------------------------
 const awsServerlessExpress = require('aws-serverless-express');
 const server = awsServerlessExpress.createServer(receiver.app);
@@ -86,27 +85,29 @@ module.exports.hello = (event, context) => {
 
 ## Slack アプリ作成
 
-アプリは、[ここ](https://api.slack.com/apps/new)から作成できる。
+アプリは、以下から作成できる。
+
+https://api.slack.com/apps/new
 
 ## Slack アプリ設定
 
-[ここ](https://api.slack.com/apps/{アプリID}/interactive-messages)でよしなに設定する。  
-Callback ID は handler.js の app.shortcut('{`callback_id`}'〜 と一致させる。
+アプリをショートカット起動する場合は、以下から設定する。「Callback ID」は ソースコードの app.shortcut('{`callback_id`}'〜 と一致させる。
+
+https://api.slack.com/apps/{作成したアプリID}/interactive-messages
+
+
 
 ## 実装のポイント
 
 - Slack アプリはレスポンスを`3秒以内`を返さないとエラーになってしまうため、`ack()` をどのタイミングで返すかがキモになってくる。3 秒を超えるような処理を実装する場合は Lambda を分割し先に ack() をしてから、一方の Lambda を非同期処理させると良いかと思う。
-- view は、 `callback_id` に紐づいているので、view が開かないと思ったら `callback_id` を確認すると良いかと思う。
-- view に `block_id` と `action_id` を指定すれば、個別の値を取得できる。
+- BlockKitBuilder の JSON と app.view の `callback_id` が紐づいているので、view が開かないと思ったら `callback_id` を確認すると良い。
+- BlockKitBuilder の JSON に `block_id` と `action_id` を指定すれば、リクエストを input ごとに取得することできる。
 
 ## さいごに
 
-Lambda で Bolt を動かす場合、Lambda起動+Bolt起動の時間が乗ってくるため、結構シビア。普通にサーバでBoltを動かした方が何かと考えることが少なくて済むと思った。
+Lambda で Bolt を動かす場合、Lambda 起動+Bolt 起動の時間が乗ってくるため、結構シビア。Lambda で動かすよりも普通にサーバで Bolt を動かした方が何かと考えることが少なく済むので良い。
 
-記事の後半から雑になってきたので、不明点はコメントか、Github で！
+## 参考になったURL
 
-## 参考
-
-https://github.com/seratch/bolt-starter
-
-https://github.com/seratch/serverless-slack-bolt-aws
+- https://github.com/seratch/bolt-starter
+- https://github.com/seratch/serverless-slack-bolt-aws
