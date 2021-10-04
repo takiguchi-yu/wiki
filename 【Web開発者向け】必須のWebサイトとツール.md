@@ -83,5 +83,11 @@ https://css-tricks.com/
 ## STACKOVERFLOW
 https://stackoverflow.com/
 
+## JSON FAKER
+https://jsonplaceholder.typicode.com
+
+ex.
+https://jsonplaceholder.typicode.com/users/2
+
 # 参考
 https://www.youtube.com/watch?v=9CEW3Tmx2tg&list=WL&index=20&t=5s
