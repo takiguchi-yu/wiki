@@ -5,6 +5,9 @@ ReactとMaterial Designを用いて、REST/GraphQL APIの上で、ブラウザ�
 引用元： https://marmelab.com/react-admin/Readme.html
 
 # Getting Started
+
+こちらの[チュートリアル](https://marmelab.com/react-admin/Tutorial.html)に沿って構築します。
+
 ```bash
 yarn create react-app test-admin --template typescript
 cd test-admin
