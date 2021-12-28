@@ -31,6 +31,10 @@ https://www.pexels.com/ja-jp/
 ■ Pixabay  
 https://pixabay.com/ja/
 
+■ Vectorove  
+ベクターイラストコレクション  
+https://vectorove.com/
+
 # 無料の画像解像度コンプレッサー
 
 ■ TinyPNG  
@@ -48,3 +52,12 @@ https://mixkit.co/
 
 ■ remmovebg  
 https://www.remove.bg/ja
+
+# 配色ツール
+
+■ Color Spectrum  
+https://colorspectrum.design/generator.html
+
+■ Color UI  
+配色カラーパレット集  
+https://colorsui.com/popular-color-palettes/
