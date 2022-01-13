@@ -89,5 +89,8 @@ https://jsonplaceholder.typicode.com
 ex.
 https://jsonplaceholder.typicode.com/users/2
 
+## Paformance Check
+https://pagespeed.web.dev/
+
 # 参考
 https://www.youtube.com/watch?v=9CEW3Tmx2tg&list=WL&index=20&t=5s
