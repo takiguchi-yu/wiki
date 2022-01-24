@@ -35,6 +35,11 @@ https://pixabay.com/ja/
 ベクターイラストコレクション  
 https://vectorove.com/
 
+■ 無料イラスト
+https://iconscout.com/free-illustrations  
+https://iconscout.com/illustrations  
+https://storyset.com/  
+
 # 無料の画像解像度コンプレッサー
 
 ■ TinyPNG  
