@@ -82,9 +82,13 @@ https://placehold.jp/
 
 ## Slidesgo(Googleスライドのテンプレート集)
 
-春は自己紹介をする機会も多いのかなぁと思います。そんなときはこちらから Cool はテンプレートを見つけてみてください。
+春は自己紹介をする機会も多いのかなぁと思います。そんなときはこちらから Cool なテンプレートを見つけてみてください。
 
 https://slidesgo.com/
+
+他にも次のようなサイトもあります。
+
+https://slidecoretemplates.com/
 
 # さいごに
 
